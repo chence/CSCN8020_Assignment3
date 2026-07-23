@@ -1,6 +1,10 @@
 .venv/
+venv/
+env/
 __pycache__/
 *.py[cod]
+.ipynb_checkpoints/
+.DS_Store
 .vscode/
 .agents/
 AGENTS.md
@@ -8,5 +12,8 @@ PROJECT_CONTEXT.md
 Unitree_MuJoCo_G1_Primer_Workshop_v0.ipynb
 external/
 logs/
-results/
-*.csv
+tmp/
+models/smoke/
+models/config_a.pt
+models/config_b.pt
+results/smoke/

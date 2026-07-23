@@ -1,0 +1,13 @@
+{
+  "config_name": "config_b",
+  "seed": 42,
+  "epsilon_decay": 0.985,
+  "epsilon_final": 0.05,
+  "episodes_completed": 600,
+  "training_seconds": 18.238783500157297,
+  "goal_range": [
+    -0.8,
+    0.8
+  ],
+  "truncation_treatment": "bootstrap across time-limit truncation"
+}
