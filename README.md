@@ -337,18 +337,22 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-##### Step 3 - Review the experiment and benchmark results in Jupyter
-
-```bash
-jupyter notebook CSCN8020_Assignment3.ipynb
-```
-
-##### Step 4 - Verify the selected model
+##### Step 3 - Verify the selected model
 
 ```bash
 python --version
 ls -lh models/selected_dqn.pt
 ```
+
+##### Step 4 - Review the selected model and results in Jupyter
+
+```bash
+jupyter notebook CSCN8020_Assignment3.ipynb
+```
+
+The Notebook loads the submitted checkpoint and displays its source
+configuration, model-selection evidence, and final evaluation results. It does
+not retrain or modify the model.
 
 ##### Step 5 - Run the continuous MuJoCo demonstration
 
