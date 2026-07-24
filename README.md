@@ -18,6 +18,14 @@ agents achieved 20/20 successful greedy evaluation episodes across four target
 angles. Configuration A was selected and compared fairly with the supplied
 rule-based policy.
 
+## Rendered Evaluation Video
+
+[Watch or download the Unitree G1 DQN evaluation video](https://raw.githubusercontent.com/chence/CSCN8020_Assignment3_Video/refs/heads/master/CSCN8020_Assignment3.mp4)
+
+The video loads `models/selected_dqn.pt` without retraining, reviews the
+experiment and benchmark evidence, and demonstrates the greedy DQN policy in
+the MuJoCo Viewer across the required target angles.
+
 This beginner-friendly workshop introduces control of a Unitree G1 humanoid
 robot using MuJoCo and Gymnasium. It covers model inspection, fixed-base model
 generation, single-joint PD control, bias-force compensation, CSV logging, and
@@ -209,6 +217,7 @@ artificial episode boundary rather than a terminal state of the control task.
 - `results/`: training metrics, evaluation metrics, tables, and plots.
 - `report/DQN_Assignment_Report.pdf`: technical report.
 - `output/pdf/CSCN8020_Assignment3_Brightspace.pdf`: one-page submission sheet.
+- [Rendered evaluation video](https://raw.githubusercontent.com/chence/CSCN8020_Assignment3_Video/refs/heads/master/CSCN8020_Assignment3.mp4): saved-model MuJoCo demonstration.
 
 ### Run the Notebook
 
