@@ -2,8 +2,7 @@
 
 **Student:** Ce Chen<br>
 **Student ID:** 9007166<br>
-**Repository:** https://github.com/chence/CSCN8020_Assignment3<br>
-**Clone URL:** https://github.com/chence/CSCN8020_Assignment3.git<br>
+**GitHub Link:** https://github.com/chence/CSCN8020_Assignment3.git<br>
 **Validated environment:** Python 3.12.13 on macOS (Apple Silicon), CPU execution
 
 ## Project Summary
