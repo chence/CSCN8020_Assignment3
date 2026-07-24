@@ -280,14 +280,90 @@ After comparing the two evaluation summaries, copy the selected checkpoint to
 
 ### Render the saved policy
 
-Rendering loads the checkpoint and never retrains. The action policy is greedy.
+Rendering loads the checkpoint and never retrains. The action policy is greedy
+with epsilon set to `0.0`.
+
+#### Platform-specific viewer commands
+
+The final development and validation were completed on macOS. MuJoCo's passive
+viewer requires Python scripts to be launched through `mjpython` on macOS. This
+affects only viewer startup; every platform loads the same saved DQN checkpoint.
+
+**macOS:**
 
 ```bash
+source .venv/bin/activate
+PYTHONPATH=src mjpython src/render_dqn_policy.py \
+  --checkpoint models/selected_dqn.pt --goals -0.8 0.8
+```
+
+**Linux or WSLg:**
+
+```bash
+source .venv/bin/activate
 PYTHONPATH=src python src/render_dqn_policy.py \
   --checkpoint models/selected_dqn.pt --goals -0.8 0.8
 ```
 
-The final submission must also contain the two experiment metric sets, the
-selected checkpoint, plots, a 6-10 page report, and a 2-3 minute rendered video.
-AI assistance used for code or writing must be disclosed according to the
-course and institutional requirements.
+**Windows PowerShell:**
+
+```powershell
+.venv\Scripts\Activate.ps1
+$env:PYTHONPATH = "src"
+python src/render_dqn_policy.py `
+  --checkpoint models/selected_dqn.pt `
+  --goals -0.8 0.8
+```
+
+On Windows, the MuJoCo Viewer requires a working desktop OpenGL environment.
+WSL users should use WSLg and follow the Linux command. These commands load
+`models/selected_dqn.pt`; they do not train or modify the submitted model.
+
+
+#### Rendered evaluation demonstration
+
+##### Step 1 - Clone the submitted repository
+
+```bash
+git clone https://github.com/chence/CSCN8020_Assignment3.git CSCN8020_Assignment3
+cd CSCN8020_Assignment3
+```
+
+##### Step 2 - Create the Python environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+##### Step 3 - Verify the saved model
+
+```bash
+python --version
+ls -lh models/selected_dqn.pt
+```
+
+##### Step 4 - Run the continuous MuJoCo demonstration
+
+```bash
+PYTHONPATH=src mjpython src/render_dqn_policy.py \
+  --checkpoint models/selected_dqn.pt \
+  --goals -0.8 0.0 0.8 0.0 \
+  --continuous \
+  --interactive \
+  --step-delay 0.08
+```
+
+The console reports `goal`, `step`, selected `action`, physical `angle`, signed
+`error`, and step `reward`. A successful `SEGMENT` line confirms that the elbow
+remained within the required tolerance for the required consecutive steps.
+
+##### Step 5 - Show the official benchmark results
+
+```bash
+cat results/config_a/dqn_evaluation_summary.csv
+cat results/rule_based_vs_selected_dqn.csv
+```
+
+
