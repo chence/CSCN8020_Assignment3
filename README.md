@@ -337,33 +337,34 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-##### Step 3 - Verify the saved model
+##### Step 3 - Review the experiment and benchmark results in Jupyter
+
+```bash
+jupyter notebook CSCN8020_Assignment3.ipynb
+```
+
+##### Step 4 - Verify the selected model
 
 ```bash
 python --version
 ls -lh models/selected_dqn.pt
 ```
 
-##### Step 4 - Run the continuous MuJoCo demonstration
+##### Step 5 - Run the continuous MuJoCo demonstration
 
 ```bash
 PYTHONPATH=src mjpython src/render_dqn_policy.py \
   --checkpoint models/selected_dqn.pt \
-  --goals -0.8 0.0 0.8 0.0 \
+  --goals -0.8 -0.4 0.8 0.4 0.0 \
   --continuous \
   --interactive \
   --step-delay 0.08
 ```
 
+The elbow starts at neutral and follows `-0.8`, `-0.4`, `+0.8`, `+0.4`, and
+finally `0.0` radians. This continuous sequence includes all four required
+benchmark goals and finishes at the neutral position.
+
 The console reports `goal`, `step`, selected `action`, physical `angle`, signed
 `error`, and step `reward`. A successful `SEGMENT` line confirms that the elbow
 remained within the required tolerance for the required consecutive steps.
-
-##### Step 5 - Show the official benchmark results
-
-```bash
-cat results/config_a/dqn_evaluation_summary.csv
-cat results/rule_based_vs_selected_dqn.csv
-```
-
-

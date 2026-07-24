@@ -96,7 +96,7 @@ def main() -> None:
                 ("Scope", "A student-written PyTorch DQN for multi-goal discrete control in the supplied fixed-base Unitree G1 MuJoCo environment."),
                 ("Outcome", "Both controlled epsilon-decay experiments achieved 20/20 successful greedy evaluation episodes. Configuration A (decay 0.995) was selected because it combined 100% success with the highest mean evaluation reward and lowest final absolute error."),
                 ("Student information", "Name: Ce Chen    Student ID: 9007166    Date: July 23, 2026"),
-                ("AI assistance disclosure", "AI assistance was used to help structure and implement code, automate experiments, generate plots, and draft this report. The student reviewed the submitted components and remains responsible for explaining them. This disclosure should be adjusted to match the course and institutional policy."),
+                ("AI assistance disclosure", "I used OpenAI Codex as a development aid for code organization, debugging, automated testing, plot generation, and editorial review. I reviewed and executed all submitted code, verified the reported results, and remain responsible for understanding and explaining the DQN implementation, experimental methodology, interpretation, and final demonstration."),
             ],
         )
         add_text_page(
