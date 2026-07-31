@@ -26,12 +26,46 @@ The video loads `models/selected_dqn.pt` without retraining, reviews the
 experiment and benchmark evidence, and demonstrates the greedy DQN policy in
 the MuJoCo Viewer across the required target angles.
 
-This beginner-friendly workshop introduces control of a Unitree G1 humanoid
-robot using MuJoCo and Gymnasium. It covers model inspection, fixed-base model
-generation, single-joint PD control, bias-force compensation, CSV logging, and
-a custom Gymnasium environment with deterministic rule-based validation.
+## Start Here: Assignment Evidence
 
-The workshop intentionally stops before implementation of a DQN agent.
+No retraining is required to inspect the submitted evidence.
+
+| Question | Open this file | What to look for |
+|---|---|---|
+| Did the selected DQN succeed? | `results/config_a/dqn_evaluation_summary.csv` | The `overall` row reports 20/20 successes, a 1.0 success rate, mean reward 13.278, and mean final error 0.00676 rad. |
+| Did learning improve during training? | `results/config_a/training_plots.png` | Reward rises and stabilizes; the rolling success rate reaches 1.0 and remains there. |
+| Which epsilon schedule was selected? | `results/epsilon_decay_comparison.csv` and `.png` | Both configurations reach 100% evaluation success; Configuration A has slightly higher reward and lower final error. |
+| Is the DQN better than the supplied baseline? | `results/rule_based_vs_selected_dqn.csv` | Both succeed 20/20, while the DQN is faster, earns more reward, and finishes closer to the goal. |
+| Can the trained model be reloaded? | `models/selected_dqn.pt` | This is the selected Configuration A checkpoint used by evaluation and rendering. |
+| Can I see the robot move? | [Rendered evaluation video](https://raw.githubusercontent.com/chence/CSCN8020_Assignment3_Video/refs/heads/master/CSCN8020_Assignment3.mp4) | The saved checkpoint controls the G1 left elbow across the benchmark goals without retraining. |
+| Where is the full explanation? | `report/DQN_Assignment_Report.pdf` | Architecture, Bellman update, reproducibility, output guide, metric interpretation, results, and limitations. |
+
+### How the evidence supports the conclusion
+
+The training curves are diagnostic evidence, not the final test. Increasing
+reward and rolling success show that the policy improved on the training
+distribution. The decisive evidence is the separate greedy evaluation with
+epsilon set to `0.0`: the selected checkpoint succeeded in all 20 held-out
+evaluation episodes across goals `-0.8`, `-0.4`, `+0.4`, and `+0.8` radians.
+The comparison with the rule-based policy uses the same goals and seed schedule,
+so differences in reward, episode length, and final error are directly
+interpretable.
+
+The Huber-loss curve should not be treated like a supervised-learning validation
+loss. DQN targets change while the policy and target network change, and the
+replay buffer increasingly contains successful transitions with terminal
+bonuses. A later increase in mean loss therefore does not by itself indicate
+policy degradation. Here, the stable 100% rolling success rate, stable reward,
+and independent 20/20 greedy evaluation provide the behavioral evidence that
+the trained controller works.
+
+## Primer Foundation
+
+The supporting workshop introduces control of a Unitree G1 humanoid robot using
+MuJoCo and Gymnasium. It covers model inspection, fixed-base model generation,
+single-joint PD control, bias-force compensation, CSV logging, and a custom
+Gymnasium environment with deterministic rule-based validation. Assignment 3
+extends that validated foundation with the student-written DQN documented below.
 
 ## Project Overview
 
@@ -51,7 +85,10 @@ The workshop begins with environment preparation and model inspection, then prog
 10. Rule-based environment validation
 11. Optional interactive visualization before reinforcement learning
 
-The project intentionally stops before the student-written Deep Q-Network implementation. The validated Gymnasium environment is designed to become the foundation for that next phase.
+The primer portion stops before reinforcement learning so the conventional
+robotics foundation can be inspected separately. The Assignment 3 portion then
+adds the complete student-written DQN, controlled experiments, saved
+checkpoints, greedy evaluation, plots, and rendered demonstration.
 
 ---
 
@@ -218,6 +255,45 @@ artificial episode boundary rather than a terminal state of the control task.
 - `report/DQN_Assignment_Report.pdf`: technical report.
 - `output/pdf/CSCN8020_Assignment3_Brightspace.pdf`: one-page submission sheet.
 - [Rendered evaluation video](https://raw.githubusercontent.com/chence/CSCN8020_Assignment3_Video/refs/heads/master/CSCN8020_Assignment3.mp4): saved-model MuJoCo demonstration.
+
+### Results directory map
+
+Each configuration directory has the same structure:
+
+| Path | Contents and interpretation |
+|---|---|
+| `results/config_a/training_metrics.csv` | One row per training episode: seed, goal, cumulative reward, success, length, final error, epsilon, mean Huber loss, optimization steps, and elapsed time. Use this for detailed or reproducibility checks. |
+| `results/config_a/training_plots.png` | Four training diagnostics: raw and rolling reward, 50-episode success rate, epsilon, and mean Huber loss. |
+| `results/config_a/dqn_evaluation_episodes.csv` | One row per greedy evaluation episode, including goal, seed, reward, length, final error, and action counts. |
+| `results/config_a/dqn_evaluation_summary.csv` | Results grouped by goal plus an `overall` row. This is the shortest proof of final DQN performance. |
+| `results/config_a/evaluation_success_by_goal.png` | Visual confirmation that success is not concentrated at only one target angle. |
+| `results/config_a/rule_based_episodes.csv` | Episode-level results for the supplied rule-based policy under the matching evaluation schedule. |
+| `results/config_a/rule_based_summary.csv` | Rule-based results grouped by goal and overall. |
+| `results/config_a/training_summary.json` | Experiment identity, seed, epsilon decay, completed episodes, duration, goal range, and truncation treatment. |
+
+`results/config_b/` contains the equivalent files for the faster epsilon-decay
+experiment. Repository-level comparison files combine the configurations:
+
+- `results/epsilon_decay_comparison.csv` and `.png` compare Configurations A
+  and B under the controlled protocol.
+- `results/rule_based_vs_selected_dqn.csv` compares the selected DQN with the
+  rule-based policy on the same 20 evaluation episodes.
+
+### Metric reading guide
+
+- **Cumulative reward:** Higher is better. It combines distance-to-goal
+  penalties, the success-region bonus, and the terminal success bonus.
+- **Success rate:** The primary task metric. Success means the absolute elbow
+  error remains within `0.04` rad for eight consecutive environment steps.
+- **Episode length:** Lower is better only when success is maintained; it
+  indicates how quickly the controller reaches and holds the goal.
+- **Final absolute error:** Lower is better and measures terminal precision in
+  radians.
+- **Epsilon:** The probability of a random training action. It documents the
+  exploration schedule and is set to `0.0` for final evaluation.
+- **Mean Huber loss:** A learning diagnostic measuring temporal-difference
+  error. It is not a standalone measure of task success because DQN targets are
+  non-stationary.
 
 ### Run the Notebook
 

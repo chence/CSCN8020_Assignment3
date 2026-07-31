@@ -131,6 +131,26 @@ def main() -> None:
                 ("Commands", "Training is run with PYTHONPATH=src python src/train_dqn.py --config-name config_a (or config_b) --episodes 600 --seed 42. Evaluation uses evaluate_dqn.py and epsilon 0.0. Exact commands are preserved in README.md."),
             ],
         )
+        add_text_page(
+            pdf,
+            "4. Finding the Submitted Outputs",
+            [
+                ("Fastest performance check", "Open results/config_a/dqn_evaluation_summary.csv. The overall row is the shortest proof of final performance: 20 successes in 20 greedy episodes, mean reward 13.278, mean episode length 19.75, and mean final absolute error 0.00676 radians. The four preceding rows show that success covers every required goal rather than one favorable target."),
+                ("Training evidence", "Open results/config_a/training_plots.png for reward, rolling success, epsilon, and Huber-loss diagnostics. The underlying per-episode values are in training_metrics.csv. The matching files under results/config_b document the controlled alternative epsilon schedule."),
+                ("Comparisons", "Open results/epsilon_decay_comparison.csv or .png to compare the two training configurations. Open results/rule_based_vs_selected_dqn.csv to compare the selected learned policy with the supplied rule-based policy under the same goals and seed schedule."),
+                ("Model and demonstration", "models/selected_dqn.pt is the reloadable Configuration A checkpoint used for final evaluation and rendering. src/evaluate_dqn.py reproduces the numeric evaluation, and src/render_dqn_policy.py loads the same checkpoint for the MuJoCo Viewer without retraining. README.md provides platform-specific commands and the rendered-video link."),
+            ],
+        )
+        add_text_page(
+            pdf,
+            "5. How to Read the Metrics",
+            [
+                ("Reward and success", "Cumulative reward should increase as the policy spends less time far from the target and earns the success bonuses. The primary task metric is success rate: the elbow must remain within 0.04 radians of the goal for eight consecutive environment steps. A stable 100% rolling rate indicates consistent training behavior."),
+                ("Speed and precision", "Episode length is meaningful only together with success: among successful policies, a shorter episode means the goal was reached and held sooner. Final absolute error reports terminal precision in radians; lower is better."),
+                ("Exploration", "Epsilon is the probability of selecting a random action during training. Its curve verifies the intended exploration schedule. Final evaluation uses epsilon 0.0, so the reported 20/20 result measures the learned greedy policy rather than lucky exploratory actions."),
+                ("Why loss can rise", "Huber loss measures temporal-difference error, not task success. DQN targets are non-stationary because the online policy, target network, replay-buffer distribution, and terminal-bonus samples change during training. Therefore, a later loss increase is not automatically degradation. Here, stable reward, stable 100% rolling success, and the separate 20/20 greedy evaluation provide the behavioral evidence that the controller works."),
+            ],
+        )
         rows = []
         for row in comparison:
             rows.append([
@@ -142,14 +162,14 @@ def main() -> None:
             ])
         add_table_page(
             pdf,
-            "4. Exploration-Decay Study",
+            "6. Exploration-Decay Study",
             ["Config", "Decay", "Episodes", "Seconds", "Final eps", "Reward-20", "Success-50", "Greedy eval"],
             rows,
             "Both settings converged to a 100% rolling training success rate and 100% greedy evaluation success. B reached minimum exploration much earlier and trained faster, while A retained diverse exploration longer and finished with a slightly higher final-20 mean training reward. The absence of late failures suggests stable learning for both settings.",
         )
         add_image_page(
             pdf,
-            "5. Training Curves",
+            "7. Training Curves",
             Path("results/epsilon_decay_comparison.png"),
             "The moving averages show the controlled comparison. Faster decay improves early exploitation, while both curves stabilize at full success. Individual reward, epsilon, loss, and success plots for each configuration are included in the results directories.",
         )
@@ -159,7 +179,7 @@ def main() -> None:
         ]
         add_table_page(
             pdf,
-            "6. Selected DQN Evaluation",
+            "8. Selected DQN Evaluation",
             ["Goal (rad)", "Episodes", "Successes", "Success rate", "Mean reward"],
             evaluation_rows,
             "Configuration A succeeded in all 20 required greedy episodes, exceeding the 80% threshold. It generalized symmetrically to positive and negative goals. Overall mean reward was 13.278, mean episode length was 19.75, and mean final absolute error was 0.00676 radians. Greedy action counts are retained in the episode-level CSV for HOLD and oscillation analysis.",
@@ -170,7 +190,7 @@ def main() -> None:
         ]
         add_table_page(
             pdf,
-            "7. Rule-Based Baseline and Discussion",
+            "9. Rule-Based Baseline and Discussion",
             ["Policy", "Successes", "Rate", "Mean reward", "Mean length", "Mean final error"],
             policy_rows,
             "Both policies were perfectly successful. The selected DQN was faster on average, earned higher reward, and ended closer to the goal. The rule-based controller is nevertheless far more sample efficient because it requires no training and directly encodes target direction. The DQN learned the same useful pattern: move the controller target toward the goal, then use HOLD so the physical joint can settle. Remaining limitations include evaluation on only four benchmark goals, one training seed, simulation-only evidence, and sensitivity to reward shaping. Future work should repeat multiple seeds, test denser unseen goals, study Double DQN or prioritized replay, and quantify action switching near the target. Configuration A is recommended because its equal success, higher reward, and lower final error outweigh B's modest speed advantage.",
