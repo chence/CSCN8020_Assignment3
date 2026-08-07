@@ -11,11 +11,8 @@ import mujoco.viewer
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MODEL = (
-    ROOT
-    / "assets/g1_inspire_fixed_base/g1_29dof_inspire_DFQ.urdf"
-)
+INSPIRE_DIR = Path(__file__).resolve().parent
+DEFAULT_MODEL = INSPIRE_DIR / "assets/g1_29dof_inspire_DFQ.urdf"
 
 ARM_JOINTS = (
     "left_shoulder_pitch_joint",
@@ -112,9 +109,7 @@ def build_model(urdf: Path) -> mujoco.MjModel:
     # The right hand is inactive in this task. Use the original G1 human-shaped
     # rubber-hand visual there, while retaining the articulated Inspire model
     # on the animated left side.
-    rubber_hand_path = (
-        ROOT / "assets/g1_fixed_base/meshes/right_rubber_hand.STL"
-    )
+    rubber_hand_path = INSPIRE_DIR / "assets/meshes/right_rubber_hand.STL"
     spec.add_mesh(
         name="right_rubber_hand_display",
         file=str(rubber_hand_path.resolve()),

@@ -15,7 +15,7 @@ From the repository root:
 
 ```bash
 source .venv/bin/activate
-mjpython final_project/reach_touch_inspire_demo.py
+mjpython final_project/inspire/reach_touch_inspire_demo.py
 ```
 
 The blue gradient sky, checkerboard floor, lighting, and camera framing are
@@ -50,15 +50,15 @@ appears in front of the left hand rather than beside the upper arm.
 ## Headless verification
 
 ```bash
-python final_project/reach_touch_inspire_demo.py --no-viewer
+python final_project/inspire/reach_touch_inspire_demo.py --no-viewer
 ```
 
 Save fingertip metrics:
 
 ```bash
-python final_project/reach_touch_inspire_demo.py \
+python final_project/inspire/reach_touch_inspire_demo.py \
   --no-viewer \
-  --csv final_project/reach_touch_inspire_metrics.csv
+  --csv final_project/inspire/reach_touch_inspire_metrics.csv
 ```
 
 ## Optional parameters
@@ -77,7 +77,7 @@ seconds.
 Example:
 
 ```bash
-mjpython final_project/reach_touch_inspire_demo.py \
+mjpython final_project/inspire/reach_touch_inspire_demo.py \
   --target-radius 0.04 \
   --target-visual-radius 0.015 \
   --required-hold 1.5
