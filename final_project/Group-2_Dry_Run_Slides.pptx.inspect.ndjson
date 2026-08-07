@@ -1,0 +1,129 @@
+{"kind":"deck","id":"pr/u4vb13","name":"Deck"}
+{"kind":"layout","layoutId":"b2b0019c-5ae1-4d0e-a59b-16e87aa3f0b9","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"4a394ef6-3101-4094-9bd8-f56a43588c2a","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/iuzqym","slide":1,"title":"UNITREE G1 · GROUP 2","textShapes":6}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":1,"text":"UNITREE G1 · GROUP 2","textPreview":"UNITREE G1 · GROUP 2","textChars":20,"textLines":1,"bbox":[42,42,500,30]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":1,"text":"Reach-and-touch\nis now executable","textPreview":"Reach-and-touch | is now executable","textChars":33,"textLines":2,"bbox":[42,116,650,210]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":1,"text":"Dry-run evidence and the path from our A3 DQN baseline to a learned multi-joint task","textPreview":"Dry-run evidence and the path from our A3 DQN baseline to a learned multi-joint task","textChars":84,"textLines":1,"bbox":[42,352,590,110]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":1,"bbox":[700,0,580,720]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":1,"text":"CSCN8020 · Final Project Dry Run","textPreview":"CSCN8020 · Final Project Dry Run","textChars":32,"textLines":1,"bbox":[42,620,500,34]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":1,"text":"A3 trained policy evidence","textPreview":"A3 trained policy evidence","textChars":26,"textLines":1,"bbox":[724,595,500,28]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":1,"text":"Saved DQN checkpoint controlling the G1 left elbow","textPreview":"Saved DQN checkpoint controlling the G1 left elbow","textChars":50,"textLines":1,"bbox":[724,628,500,44]}
+{"kind":"image","id":"im/cfa9w3m9","slide":1,"name":"","alt":"Project evidence image","bbox":[700,82,580,488]}
+{"kind":"notes","id":"nt/iuzqym","slide":1,"text":""}
+{"kind":"slide","id":"sl/u0ypra","slide":2,"title":"We are extending a proven controller into a measurable task","textShapes":17}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":2,"text":"We are extending a proven controller into a measurable task","textPreview":"We are extending a proven controller into a measurable task","textChars":59,"textLines":1,"bbox":[42,35,1110,72]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":2,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[1180,658,56,25]}
+{"kind":"shape","id":"sh/ji5snelo","slide":2,"bbox":[42,155,375,410]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[67,180,80,55]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":2,"text":"A3 BASELINE","textPreview":"A3 BASELINE","textChars":11,"textLines":1,"bbox":[67,254,320,30]}
+{"kind":"textbox","id":"sh/ulwval87","slide":2,"text":"Control one joint","textPreview":"Control one joint","textChars":17,"textLines":1,"bbox":[67,306,320,72]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":2,"text":"DQN selects decrease, hold, or increase for the left elbow target.","textPreview":"DQN selects decrease, hold, or increase for the left elbow target.","textChars":66,"textLines":1,"bbox":[67,405,320,120]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":2,"bbox":[453,155,375,410]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[478,180,80,55]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":2,"text":"CURRENT DEMO","textPreview":"CURRENT DEMO","textChars":12,"textLines":1,"bbox":[478,254,320,30]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":2,"text":"Validate the task","textPreview":"Validate the task","textChars":17,"textLines":1,"bbox":[478,306,320,72]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":2,"text":"Scripted PD targets drive shoulder and elbow through reach, hold, and return.","textPreview":"Scripted PD targets drive shoulder and elbow through reach, hold, and return.","textChars":77,"textLines":1,"bbox":[478,405,320,120]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":2,"bbox":[864,155,375,410]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[889,180,80,55]}
+{"kind":"textbox","id":"sh/wval87ed","slide":2,"text":"FINAL POLICY","textPreview":"FINAL POLICY","textChars":12,"textLines":1,"bbox":[889,254,320,30]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":2,"text":"Learn the sequence","textPreview":"Learn the sequence","textChars":18,"textLines":1,"bbox":[889,306,320,72]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":2,"text":"DQN or PPO will replace scripted targets and learn from task rewards.","textPreview":"DQN or PPO will replace scripted targets and learn from task rewards.","textChars":69,"textLines":1,"bbox":[889,405,320,120]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":2,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[419,328,34,50]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":2,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[830,328,34,50]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":2,"text":"The dry run proves the middle step; training remains the next milestone.","textPreview":"The dry run proves the middle step; training remains the next milestone.","textChars":72,"textLines":1,"bbox":[42,605,1100,40]}
+{"kind":"notes","id":"nt/u0ypra","slide":2,"text":""}
+{"kind":"slide","id":"sl/7idppp","slide":3,"title":"The A3 DQN already provides a reliable learning baseline","textShapes":8}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":3,"text":"The A3 DQN already provides a reliable learning baseline","textPreview":"The A3 DQN already provides a reliable learning baseline","textChars":56,"textLines":1,"bbox":[42,35,1110,72]}
+{"kind":"textbox","id":"sh/d0z61032","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1180,658,56,25]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":3,"bbox":[42,124,710,510]}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":3,"text":"20 / 20","textPreview":"20 / 20","textChars":7,"textLines":1,"bbox":[800,150,390,84]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":3,"text":"greedy evaluation successes","textPreview":"greedy evaluation successes","textChars":27,"textLines":1,"bbox":[800,235,390,44]}
+{"kind":"textbox","id":"sh/knih4byh","slide":3,"text":"100%","textPreview":"100%","textChars":4,"textLines":1,"bbox":[800,323,390,84]}
+{"kind":"textbox","id":"sh/val87ed8","slide":3,"text":"evaluation success rate","textPreview":"evaluation success rate","textChars":23,"textLines":1,"bbox":[800,408,390,44]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":3,"text":"0.00491 rad","textPreview":"0.00491 rad","textChars":11,"textLines":1,"bbox":[800,492,390,65]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":3,"text":"mean final absolute error reported for Config A","textPreview":"mean final absolute error reported for Config A","textChars":47,"textLines":1,"bbox":[800,562,390,58]}
+{"kind":"image","id":"im/yhgn29gr","slide":3,"name":"","alt":"Project evidence image","bbox":[60,142,674,474]}
+{"kind":"notes","id":"nt/7idppp","slide":3,"text":""}
+{"kind":"slide","id":"sl/6630v4","slide":4,"title":"Touch becomes a measurable RL objective","textShapes":10}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":4,"text":"Touch becomes a measurable RL objective","textPreview":"Touch becomes a measurable RL objective","textChars":39,"textLines":1,"bbox":[42,35,1110,72]}
+{"kind":"textbox","id":"sh/ulwval87","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[1180,658,56,25]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":4,"text":"OBSERVATION","textPreview":"OBSERVATION","textChars":11,"textLines":1,"bbox":[42,136,250,30]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":4,"text":"Joint angles and velocities\nHand and target positions\nHand-to-target error\nCurrent task phase","textPreview":"Joint angles and velocities | Hand and target positions | Hand-to-target error | Current task phase","textChars":93,"textLines":4,"bbox":[42,183,330,190]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":4,"text":"ACTION","textPreview":"ACTION","textChars":6,"textLines":1,"bbox":[453,136,250,30]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":4,"text":"Discrete target changes\nfor shoulder and elbow\n\nInitial baseline stays\ncompatible with DQN","textPreview":"Discrete target changes | for shoulder and elbow |  | Initial baseline stays | compatible with DQN","textChars":90,"textLines":5,"bbox":[453,183,330,190]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":4,"text":"SUCCESS","textPreview":"SUCCESS","textChars":7,"textLines":1,"bbox":[864,136,250,30]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":4,"text":"Distance ≤ target radius\nand hold duration ≥ threshold\n\nReturn to neutral pose\nis evaluated separately","textPreview":"Distance ≤ target radius | and hold duration ≥ threshold |  | Return to neutral pose | is evaluated separately","textChars":102,"textLines":5,"bbox":[864,183,330,190]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":4,"bbox":[42,432,1197,155]}
+{"kind":"textbox","id":"sh/d0z61032","slide":4,"text":"rₜ = − ‖p_hand − p_target‖₂  +  b_touch  −  λ · smoothness","textPreview":"rₜ = − ‖p_hand − p_target‖₂  +  b_touch  −  λ · smoothness","textChars":58,"textLines":1,"bbox":[79,467,1120,58]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":4,"text":"Reward closer motion, sustained contact, and stability while penalizing unnecessary oscillation.","textPreview":"Reward closer motion, sustained contact, and stability while penalizing unnecessary oscillation.","textChars":96,"textLines":1,"bbox":[79,538,1120,34]}
+{"kind":"notes","id":"nt/6630v4","slide":4,"text":""}
+{"kind":"slide","id":"sl/pge9s0","slide":5,"title":"The demo validates one complete reach-touch-return cycle","textShapes":17}
+{"kind":"textbox","id":"sh/idonyd0z","slide":5,"text":"The demo validates one complete reach-touch-return cycle","textPreview":"The demo validates one complete reach-touch-return cycle","textChars":56,"textLines":1,"bbox":[42,35,1110,72]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":5,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1180,658,56,25]}
+{"kind":"shape","id":"sh/0je9cvix","slide":5,"bbox":[42,156,244,196]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":5,"text":"REST","textPreview":"REST","textChars":4,"textLines":1,"bbox":[60,186,208,38]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":5,"text":"Stabilize the robot","textPreview":"Stabilize the robot","textChars":19,"textLines":1,"bbox":[60,252,208,72]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[295,225,50,48]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":5,"bbox":[346,156,244,196]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":5,"text":"REACH","textPreview":"REACH","textChars":5,"textLines":1,"bbox":[364,186,208,38]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":5,"text":"Interpolate arm targets","textPreview":"Interpolate arm targets","textChars":23,"textLines":1,"bbox":[364,252,208,72]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[599,225,50,48]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":5,"bbox":[650,156,244,196]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":5,"text":"TOUCH / HOLD","textPreview":"TOUCH / HOLD","textChars":12,"textLines":1,"bbox":[668,186,208,38]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":5,"text":"Stay inside the target","textPreview":"Stay inside the target","textChars":22,"textLines":1,"bbox":[668,252,208,72]}
+{"kind":"textbox","id":"sh/sji5snel","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[903,225,50,48]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":5,"bbox":[954,156,244,196]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":5,"text":"RETURN","textPreview":"RETURN","textChars":6,"textLines":1,"bbox":[972,186,208,38]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":5,"text":"Recover neutral pose","textPreview":"Recover neutral pose","textChars":20,"textLines":1,"bbox":[972,252,208,72]}
+{"kind":"shape","id":"sh/svu9knih","slide":5,"bbox":[42,418,570,167]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":5,"text":"target-radius = 0.045 m","textPreview":"target-radius = 0.045 m","textChars":23,"textLines":1,"bbox":[68,449,510,38]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":5,"text":"The hand is touching when endpoint distance is within 4.5 cm.","textPreview":"The hand is touching when endpoint distance is within 4.5 cm.","textChars":61,"textLines":1,"bbox":[68,505,510,55]}
+{"kind":"shape","id":"sh/sneloj2t","slide":5,"bbox":[650,418,589,167]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":5,"text":"required-hold = 1.5 s","textPreview":"required-hold = 1.5 s","textChars":21,"textLines":1,"bbox":[676,449,530,38]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":5,"text":"The run succeeds only after enough contact time accumulates during TOUCH/HOLD.","textPreview":"The run succeeds only after enough contact time accumulates during TOUCH/HOLD.","textChars":78,"textLines":1,"bbox":[676,505,530,58]}
+{"kind":"notes","id":"nt/pge9s0","slide":5,"text":""}
+{"kind":"slide","id":"sl/ooqzsx","slide":6,"title":"The demo succeeds with 1.2 mm endpoint accuracy","textShapes":8}
+{"kind":"textbox","id":"sh/sneloj2t","slide":6,"text":"The demo succeeds with 1.2 mm endpoint accuracy","textPreview":"The demo succeeds with 1.2 mm endpoint accuracy","textChars":47,"textLines":1,"bbox":[42,35,1110,72]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":6,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[1180,658,56,25]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":6,"text":"0.0012 m","textPreview":"0.0012 m","textChars":8,"textLines":1,"bbox":[824,164,370,70]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":6,"text":"minimum endpoint distance","textPreview":"minimum endpoint distance","textChars":25,"textLines":1,"bbox":[824,240,370,38]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":6,"text":"2.002 s","textPreview":"2.002 s","textChars":7,"textLines":1,"bbox":[824,326,370,70]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":6,"text":"accumulated touch time","textPreview":"accumulated touch time","textChars":22,"textLines":1,"bbox":[824,402,370,38]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":6,"text":"SUCCESS","textPreview":"SUCCESS","textChars":7,"textLines":1,"bbox":[824,490,370,58]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":6,"text":"Headless verification and the visual demo use the same thresholds.","textPreview":"Headless verification and the visual demo use the same thresholds.","textChars":66,"textLines":1,"bbox":[42,606,1110,36]}
+{"kind":"chart","id":"ch/ixczed8v","slide":6,"name":"","chartType":"line","title":"Endpoint distance across the four phases","bbox":[42,138,720,430]}
+{"kind":"notes","id":"nt/ooqzsx","slide":6,"text":""}
+{"kind":"slide","id":"sl/2e0bs1","slide":7,"title":"The demo proves task mechanics, not learned behavior","textShapes":7}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":7,"text":"The demo proves task mechanics, not learned behavior","textPreview":"The demo proves task mechanics, not learned behavior","textChars":52,"textLines":1,"bbox":[42,35,1110,72]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":7,"text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[1180,658,56,25]}
+{"kind":"shape","id":"sh/9gr2p8nq","slide":7,"bbox":[42,144,570,430]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":7,"text":"PROVEN NOW","textPreview":"PROVEN NOW","textChars":10,"textLines":1,"bbox":[72,177,500,35]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":7,"text":"✓ Multi-joint arm actuation\n✓ Virtual target visualization\n✓ Endpoint-distance measurement\n✓ Touch and hold success rule\n✓ Reach, hold, and return phases\n✓ Reproducible CSV evidence","textPreview":"✓ Multi-joint arm actuation | ✓ Virtual target visualization | ✓ Endpoint-distance measurement | ✓ Touch and hold success rule | ✓ Reach,...","textChars":181,"textLines":6,"bbox":[72,238,490,280]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":7,"bbox":[650,144,589,430]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":7,"text":"STILL TO LEARN","textPreview":"STILL TO LEARN","textChars":14,"textLines":1,"bbox":[680,177,510,35]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":7,"text":"○ Action selection from observations\n○ Reward-driven policy improvement\n○ Robustness across target positions\n○ Comparison against scripted baseline\n○ Motion smoothness under DQN or PPO\n○ Held-out multi-seed evaluation","textPreview":"○ Action selection from observations | ○ Reward-driven policy improvement | ○ Robustness across target positions | ○ Comparison against s...","textChars":217,"textLines":6,"bbox":[680,238,500,280]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":7,"text":"This distinction keeps the dry-run claim accurate and gives us a clean experimental baseline.","textPreview":"This distinction keeps the dry-run claim accurate and gives us a clean experimental baseline.","textChars":93,"textLines":1,"bbox":[42,610,1130,40]}
+{"kind":"notes","id":"nt/2e0bs1","slide":7,"text":""}
+{"kind":"slide","id":"sl/xpdynn","slide":8,"title":"Next, the learned policy must beat the scripted baseline","textShapes":16}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":8,"text":"Next, the learned policy must beat the scripted baseline","textPreview":"Next, the learned policy must beat the scripted baseline","textChars":56,"textLines":1,"bbox":[42,35,1110,72]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":8,"text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[1180,658,56,25]}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":8,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[42,147,80,50]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":8,"text":"Environment","textPreview":"Environment","textChars":11,"textLines":1,"bbox":[42,221,260,44]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":8,"text":"Expose state, discrete actions, reward, and termination through Gymnasium.","textPreview":"Expose state, discrete actions, reward, and termination through Gymnasium.","textChars":74,"textLines":1,"bbox":[42,292,250,154]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":8,"bbox":[312,151,1,322]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":8,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[346,147,80,50]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":8,"text":"Training","textPreview":"Training","textChars":8,"textLines":1,"bbox":[346,221,260,44]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":8,"text":"Train DQN across randomized reachable targets and tune reward weights.","textPreview":"Train DQN across randomized reachable targets and tune reward weights.","textChars":70,"textLines":1,"bbox":[346,292,250,154]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":8,"bbox":[616,151,1,322]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":8,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[650,147,80,50]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":8,"text":"Evaluation","textPreview":"Evaluation","textChars":10,"textLines":1,"bbox":[650,221,260,44]}
+{"kind":"textbox","id":"sh/obm58z25","slide":8,"text":"Report success rate, distance, hold time, reward, and smoothness over fixed seeds.","textPreview":"Report success rate, distance, hold time, reward, and smoothness over fixed seeds.","textChars":82,"textLines":1,"bbox":[650,292,250,154]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":8,"bbox":[920,151,1,322]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":8,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[954,147,80,50]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":8,"text":"Decision","textPreview":"Decision","textChars":8,"textLines":1,"bbox":[954,221,260,44]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":8,"text":"Keep DQN if motion is stable; compare PPO if discrete control remains jerky.","textPreview":"Keep DQN if motion is stable; compare PPO if discrete control remains jerky.","textChars":76,"textLines":1,"bbox":[954,292,250,154]}
+{"kind":"shape","id":"sh/z61032ls","slide":8,"bbox":[42,535,1197,104]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":8,"text":"Dry-run ask","textPreview":"Dry-run ask","textChars":11,"textLines":1,"bbox":[70,563,180,32]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":8,"text":"Confirm the task definition and evaluation criteria before full training.","textPreview":"Confirm the task definition and evaluation criteria before full training.","textChars":73,"textLines":1,"bbox":[260,558,930,44]}
+{"kind":"notes","id":"nt/xpdynn","slide":8,"text":""}
