@@ -1,257 +1,145 @@
-# Group 2 Dry-Run Speaker Notes
+# Inspire Demo Speaker Notes / Inspire Demo 演讲稿
 
-Estimated presentation length: 6–8 minutes, excluding the live demo and Q&A.
+Recommended length: 7–9 minutes, excluding the live demo and Q&A.
 
-## Slide 1 — Reach-and-touch is now executable
+建议时长：7–9 分钟，不包括现场 demo 和问答。
 
-**Speaker:**
+## Slide 1 — Five-finger pointing is now executable
 
-Good morning. We are Group 2, and our final project extends our Assignment 3
-Deep Q-Network controller into a Unitree G1 reach-and-touch task.
+### English script
 
-In Assignment 3, we successfully trained a DQN to control one left-elbow joint.
-For the final project, we want the robot to perform a measurable sequence: start
-from rest, reach a virtual target, touch and hold it, and return to a neutral
-pose.
+Good morning. We are Group 2. This version of our project uses a Unitree G1 model with an articulated Inspire five-finger hand.
 
-Our main progress for this dry run is that this complete task is now executable
-in MuJoCo. Today, we will show the validated task mechanics, the evidence from
-our demo, and how we will replace the current scripted controller with a
-learned policy.
+Our dry-run result is an executable pointing and touching sequence. The robot begins in a relaxed pose, forms a pointing gesture with its left hand, moves the actual modeled index fingertip to a virtual target, holds there, and returns to rest.
 
-**中文提示：** 开场要主动说明项目目标。不要说当前 reach-and-touch 已经由 RL
-学会，只说完整任务已经可以执行。
+The scope is important: this is a deterministic scripted joint-position baseline, not a trained reach-and-touch policy. It validates the model, task mechanics, endpoint measurement, and success rule needed before adaptive control and reinforcement-learning training.
 
-**Transition:** First, let us explain how the current demo connects our A3 work
-to the final learned policy.
+### 中文提示
 
-## Slide 2 — We are extending a proven controller into a measurable task
+开场立刻说明：五指模型和完整动作已经跑通，但当前不是训练出来的策略。不要把 scripted baseline 说成 RL 成果。
 
-**Speaker:**
+**Transition:** First, let us show how this demo fits into our project path.
 
-Our development has three stages.
+## Slide 2 — The Inspire demo connects our proven DQN to a richer task
 
-The first stage is our A3 baseline. The DQN observes the left-elbow state and
-selects one of three actions: decrease, hold, or increase the controller target.
+### English script
 
-The second stage is our current dry-run demo. It uses scripted PD targets to
-control the left shoulder and elbow through the full reach, touch, hold, and
-return sequence. This validates the task before we spend time training.
+Our work has three stages.
 
-The third stage is the final learned policy. We will keep the same task and
-measurements, but replace the scripted target sequence with actions selected by
-DQN or, if necessary, PPO.
+In Assignment 3, our DQN learned discrete control of one left-elbow joint. That work gave us a functioning replay buffer, online and target networks, checkpoint saving, and greedy evaluation.
 
-The important distinction is that the dry run proves the middle stage. The
-multi-joint task works, but policy training remains our next milestone.
+The current Inspire demo validates a richer physical task. It commands seven left-arm joint targets and twelve left-hand joint targets to produce a natural pointing motion and a measurable touch.
 
-**中文提示：** 这一页是最重要的范围说明。强调三个阶段，防止老师误认为 demo
-是训练结果。
+The next stage is adaptation. We first need inverse kinematics, or another target-conditioned controller, so that the fingertip responds when the target moves. Then we can train DQN or PPO across multiple reachable target positions.
 
-**Transition:** Our confidence in using DQN comes from the results we already
-achieved in Assignment 3.
+### 中文提示
 
-## Slide 3 — The A3 DQN already provides a reliable learning baseline
+强调顺序：A3 DQN 基础 → Inspire 环境和动作验证 → IK 自适应 → RL 训练。IK 和 RL 不是同一件事。
 
-**Speaker:**
+**Transition:** Our confidence in the learning pipeline comes from the A3 evaluation.
 
-This slide summarizes our validated A3 baseline.
+## Slide 3 — The A3 DQN still provides our learning foundation
 
-The training reward improved and stabilized over 500 episodes. The rolling
-success rate reached one hundred percent and remained stable. We then evaluated
-the saved checkpoint greedily, with exploration disabled.
+### English script
 
-The selected model succeeded in all 20 evaluation episodes across four target
-angles. The proposal reports a 100 percent evaluation success rate and a mean
-final absolute error of approximately 0.00491 radians for Configuration A.
+The A3 controller achieved 20 successes in 20 greedy evaluation episodes across four target angles. Its reported evaluation success rate was 100 percent, and Configuration A had a mean final absolute error of approximately 0.00491 radians.
 
-This result does not prove the reach-and-touch task yet, because that task has a
-larger state and action space. However, it gives us a working DQN
-implementation, replay buffer, target network, checkpoint workflow, and
-evaluation procedure that we can extend instead of rebuilding from zero.
+These numbers apply only to the earlier one-joint elbow task. They do not prove that the new five-finger task has already been learned. Their value is that we can reuse a tested DQN implementation and evaluation workflow instead of starting again from zero.
 
-**中文提示：** 不要花时间逐张解释四个图。重点是训练改善、独立 greedy
-evaluation，以及可以复用的 DQN 基础设施。
+### 中文提示
 
-**Transition:** To extend this baseline, we first need to define touching as a
-clear reinforcement-learning problem.
+明确这些数字属于 A3 的单关节实验。不要称它们为 Inspire demo 的训练结果。
 
-## Slide 4 — Touch becomes a measurable RL objective
+**Transition:** The new model changes the task endpoint from a hand approximation to a real fingertip site.
 
-**Speaker:**
+## Slide 4 — The endpoint is now an actuated index fingertip
 
-The new observation will include the controlled joint angles and velocities,
-the hand and target positions, the hand-to-target error, and the current task
-phase.
+### English script
 
-Our first action design remains discrete so that it is compatible with our DQN.
-Each action changes or holds a shoulder or elbow controller target. We will keep
-the action set small enough to train reliably, while still allowing the hand to
-move toward the target.
+The MuJoCo model exposes 53 joints: 29 body joints and 24 modeled hand joints. The animated left side retains the articulated Inspire hand. The unused right side uses a simpler human-shaped visual, while its internal joints remain in the model for consistent dimensions.
 
-Touching is defined quantitatively. The hand must enter the target region and
-remain there for a required duration. Returning to the neutral pose can then be
-measured as a separate completion criterion.
+The current baseline commands seven left-arm targets and twelve left-finger targets. The endpoint is a site attached to the modeled left index fingertip, so success is based on the actual finger geometry rather than a rigid hand offset.
 
-The planned reward has three main parts. It penalizes the distance between the
-hand and the target, provides a bonus for touching and holding, and penalizes
-unnecessary or unstable motion. Therefore, the agent must learn both accuracy
-and stability rather than only moving the arm quickly.
+For the future reinforcement-learning objective, the main reward term will reduce fingertip-to-target distance. Additional terms will reward touching and holding and penalize unstable motion.
 
-**中文提示：** 指公式时只解释三部分，不要推导。可能被问 state 中放 phase
-是否会限制端到端学习，可以回答它让初版任务更稳定、也更容易解释。
+### 中文提示
 
-**Transition:** We used exactly these measurable definitions to build and test
-the current demo sequence.
+如果被问为什么右手看起来不同：右手在任务中不活动，为了展示自然，使用了原始 G1 rubber-hand visual；左手仍是可动 Inspire 手。
 
-## Slide 5 — The demo validates one complete reach-touch-return cycle
+**Transition:** With that endpoint defined, the demo runs a six-phase sequence.
 
-**Speaker:**
+## Slide 5 — Six phases produce one complete point-touch-return cycle
 
-The demo contains four phases.
+### English script
 
-During REST, the controller stabilizes the robot. During REACH, it smoothly
-interpolates the shoulder and elbow targets. During TOUCH AND HOLD, the hand
-must remain inside the virtual target. Finally, during RETURN, the arm moves
-back toward its neutral pose.
+The implementation has six phases: REST, POINT, REACH, TOUCH/HOLD, RETURN, and RELAX.
 
-We use two explicit success parameters. The target radius is 0.045 metres, so
-the hand is considered to be touching when its endpoint is within 4.5
-centimetres of the target centre. The required hold duration is 1.5 seconds, so
-briefly passing through the target does not count as success.
+During POINT, the thumb and three non-pointing fingers curl while the index finger remains almost straight. During REACH, the left-arm targets move the actual fingertip to the virtual target. During TOUCH/HOLD, valid time accumulates only while the fingertip is inside the success region. The arm then returns and the hand relaxes.
 
-These parameters are command-line options, which makes the criterion easy to
-reproduce and allows us to test stricter accuracy or hold requirements later.
+Two command-line parameters define success. `target-radius` is the maximum fingertip-to-centre distance that counts as touching. Its default is 0.045 metres. `required-hold` is the minimum accumulated valid time, and its default is 1.5 seconds.
 
-**中文提示：** 讲到这里可以准备切换到 MuJoCo。若现场时间紧，可以先播放
-demo，再回来讲第 6 页结果。
+### 中文提示
 
-**Live demo introduction:** We will now run the visual demo. Please notice the
-four phase labels in the terminal. The virtual target is red while the hand is
-outside the success region and turns green while the hand is touching it.
+准备切到现场 demo。指出目标外为蓝色、触碰时变绿；终端会打印每个 phase。
 
-**After the demo:** The sequence completed successfully. We also ran the same
-controller headlessly and saved every time step to a CSV file for quantitative
-verification.
+**Live-demo command:**
 
-## Slide 6 — The demo succeeds with 1.2 mm endpoint accuracy
+```bash
+source .venv/bin/activate
+mjpython final_project/inspire/reach_touch_inspire_demo.py
+```
 
-**Speaker:**
+## Slide 6 — The Inspire baseline reaches the target and holds
 
-This chart shows the measured hand-to-target distance throughout the complete
-sequence.
+### English script
 
-The distance begins at approximately 0.23 metres during rest. It then decreases
-during the reach phase and remains near zero during touch and hold. During the
-return phase, the distance increases again, which is expected because the hand
-is moving back to its neutral pose.
+We also ran the same sequence headlessly and recorded the index-tip distance at every simulation step.
 
-The minimum measured distance was approximately 0.0012 metres, or 1.2
-millimetres. The hand accumulated 2.002 seconds inside the target region, which
-exceeded our required 1.5-second hold threshold. The run therefore returned
-SUCCESS.
+The verified run reached a minimum distance of 0.0000 metres at the displayed precision. It accumulated 2.002 seconds inside the target region, which exceeds the required 1.5 seconds, and returned `success=True`.
 
-The visual and headless versions use the same target radius and hold criteria,
-so the reported result is reproducible and not based only on what the movement
-looks like.
+The curve starts near 0.20 metres, falls during REACH, remains at the target during TOUCH/HOLD, and increases again during RETURN. The final increase is expected because the hand intentionally leaves the target.
 
-**中文提示：** 不要说 1.2 mm 是 learned accuracy。这只是 scripted baseline
-在本次固定目标上的结果。
+These values describe a fixed-target scripted run, not learned-policy accuracy.
 
-**Transition:** These results are useful, but we need to be precise about what
-they do and do not prove.
+### 中文提示
 
-## Slide 7 — The demo proves task mechanics, not learned behavior
+重点说 0.0000 m、2.002 s、SUCCESS。一定补充“不是 learned accuracy”。
 
-**Speaker:**
+**Transition:** This gives strong environment evidence, but it also has a clear boundary.
 
-The current demo proves six important components.
+## Slide 7 — The Inspire demo proves mechanics, not adaptation
 
-It proves that we can actuate multiple arm joints, display a virtual target,
-measure the endpoint distance, apply a touch-and-hold success rule, execute all
-four task phases, and export reproducible measurements.
+### English script
 
-However, the action sequence is still scripted. We have not yet shown that a
-policy can select actions from observations, improve through reward, or
-generalize across target positions.
+The demo proves that the articulated hand loads correctly, the index fingertip is measurable, a natural pointing gesture can be commanded, the six phases run, the touch-and-hold rule works, and the results can be reproduced from CSV output.
 
-The final experiments must compare the learned policy against this scripted
-baseline, evaluate multiple target positions and random seeds, and measure
-motion smoothness. This separation gives us an honest dry-run result and a
-clear baseline for the learned controller.
+It does not yet adapt to a moved target. The current target is calculated from the fixed `TOUCH_ARM` pose. If its distance or left-right position changes, the scripted arm pose will not automatically follow it.
 
-**中文提示：** 老师如果指出“这不是 RL”，直接同意并说明这是 environment
-validation baseline；不要试图模糊 scripted 和 learned 的区别。
+That limitation is exactly why inverse kinematics or a target-conditioned learned controller is the next engineering step.
 
-**Transition:** With the environment mechanics validated, our remaining work is
-focused on learning and evaluation.
+### 中文提示
 
-## Slide 8 — Next, the learned policy must beat the scripted baseline
+如果老师问“球换位置能不能追踪”，直接回答当前不能；目标由固定 TOUCH_ARM 姿态计算。后续 IK 或 RL 才能自适应。
 
-**Speaker:**
+**Transition:** Our remaining work follows directly from this limitation.
+
+## Slide 8 — Next, make the fingertip adapt before full RL training
+
+### English script
 
 Our next work has four steps.
 
-First, we will expose the new observation, discrete action space, reward, and
-termination rules through a Gymnasium environment.
+First, we will expose fingertip error, actions, reward, termination, and success information through a Gymnasium environment.
 
-Second, we will train DQN across randomized but reachable virtual target
-positions and tune the reward weights.
+Second, we will add inverse kinematics so the arm can respond to target-position changes. This gives us a reliable adaptive reference controller and helps confirm which targets are reachable.
 
-Third, we will evaluate the saved policy using fixed seeds and exploration
-disabled. We will report success rate, hand-to-target distance, hold duration,
-cumulative reward, and motion smoothness.
+Third, we will train DQN or PPO across randomized reachable targets.
 
-Finally, we will compare the results against the scripted baseline. If DQN is
-reliable and sufficiently smooth, we will retain it as our main approach. If
-the discrete actions produce unstable or jerky motion, we will compare it with
-PPO as a continuous-control extension.
+Finally, we will compare the learned policy against both the scripted baseline and the IK reference using success rate, minimum distance, hold time, reward, and motion smoothness.
 
-For this dry run, the feedback we need is whether our task definition and
-evaluation criteria are appropriate before we begin full training.
+For this dry run, we would like feedback on whether this Inspire task scope and evaluation plan are appropriate before full training.
 
-Thank you. We are ready for questions and feedback.
+### 中文提示
 
-**中文提示：** 结尾不要只说 Thank you。明确向老师询问 task definition 和
-evaluation criteria 是否合理。
-
-## Short Q&A Answers
-
-### Is this demo controlled by reinforcement learning?
-
-Not yet. It is a deterministic scripted PD baseline used to validate the task
-mechanics and success measurements. The A3 elbow controller is learned by DQN;
-the next project milestone is to replace this scripted multi-joint sequence
-with learned actions.
-
-### Why use DQN for a multi-joint task?
-
-DQN gives us a direct extension of our validated A3 implementation. We will
-start with a carefully limited discrete action space. If that action space
-becomes inefficient or produces jerky motion, PPO is our planned continuous
-control comparison.
-
-### How is touch detected?
-
-We calculate the Euclidean distance between the hand endpoint and the virtual
-target centre. Touch is true when that distance is less than or equal to the
-target radius.
-
-### Why require a hold duration?
-
-Without a hold requirement, the hand could pass through the target briefly and
-still be counted as successful. The hold duration requires stable, sustained
-contact.
-
-### Why does the distance increase at the end of the graph?
-
-That is the RETURN phase. After completing the touch requirement, the hand
-moves away from the target and returns toward the neutral pose.
-
-### How will you show that the policy learned?
-
-We will train on randomized reachable targets, save the checkpoint, disable
-exploration during evaluation, and test across fixed held-out targets and
-multiple seeds. We will compare those results with the untrained and scripted
-baselines.
+结尾提出明确问题，不要只说 Thank you。等待老师对 task scope、IK baseline 和评价指标给反馈。
 

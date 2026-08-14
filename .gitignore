@@ -18,3 +18,4 @@ models/config_a.pt
 models/config_b.pt
 results/smoke/
 .history
+*.bk
