@@ -1,7 +1,6 @@
 # Unitree G1 + Inspire Five-Finger Demo
 
-This is an independent Inspire-hand version of the reach-and-touch demo. It
-does not replace or modify `reach_touch_demo.py`.
+This directory contains the Inspire-hand version of the reach-and-touch demo.
 
 The model is based on Unitree's official
 `g1_29dof_rev_1_0_with_inspire_hand_DFQ.urdf`. MuJoCo exposes 29 body joints
@@ -15,7 +14,7 @@ From the repository root:
 
 ```bash
 source .venv/bin/activate
-mjpython final_project/inspire/reach_touch_inspire_demo.py
+mjpython final_project/reach_touch_inspire_demo.py
 ```
 
 The blue gradient sky, checkerboard floor, lighting, and camera framing are
@@ -50,15 +49,15 @@ appears in front of the left hand rather than beside the upper arm.
 ## Headless verification
 
 ```bash
-python final_project/inspire/reach_touch_inspire_demo.py --no-viewer
+python final_project/reach_touch_inspire_demo.py --no-viewer
 ```
 
 Save fingertip metrics:
 
 ```bash
-python final_project/inspire/reach_touch_inspire_demo.py \
+python final_project/reach_touch_inspire_demo.py \
   --no-viewer \
-  --csv final_project/inspire/reach_touch_inspire_metrics.csv
+  --csv final_project/reach_touch_inspire_metrics.csv
 ```
 
 ## Optional parameters
@@ -77,7 +76,7 @@ seconds.
 Example:
 
 ```bash
-mjpython final_project/inspire/reach_touch_inspire_demo.py \
+mjpython final_project/reach_touch_inspire_demo.py \
   --target-radius 0.04 \
   --target-visual-radius 0.015 \
   --required-hold 1.5

@@ -86,7 +86,7 @@ Two command-line parameters define success. `target-radius` is the maximum finge
 
 ```bash
 source .venv/bin/activate
-mjpython final_project/inspire/reach_touch_inspire_demo.py
+mjpython final_project/reach_touch_inspire_demo.py
 ```
 
 ## Slide 6 — The Inspire baseline reaches the target and holds
@@ -142,4 +142,3 @@ For this dry run, we would like feedback on whether this Inspire task scope and 
 ### 中文提示
 
 结尾提出明确问题，不要只说 Thank you。等待老师对 task scope、IK baseline 和评价指标给反馈。
-

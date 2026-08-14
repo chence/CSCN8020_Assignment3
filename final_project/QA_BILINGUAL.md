@@ -124,14 +124,13 @@
 
 ```bash
 source .venv/bin/activate
-mjpython final_project/inspire/reach_touch_inspire_demo.py
+mjpython final_project/reach_touch_inspire_demo.py
 ```
 
 ## 22. How do we run reproducible headless verification? / 如何运行可复现的无界面验证？
 
 ```bash
-python final_project/inspire/reach_touch_inspire_demo.py \
+python final_project/reach_touch_inspire_demo.py \
   --no-viewer \
-  --csv final_project/inspire/reach_touch_inspire_metrics.csv
+  --csv final_project/reach_touch_inspire_metrics.csv
 ```
-
