@@ -136,13 +136,22 @@ python final_project/evaluate_actor_critic.py --episodes 100
 Show the learned policy in the MuJoCo viewer:
 
 ```bash
+# macOS
 mjpython final_project/evaluate_actor_critic.py --episodes 5 --viewer
+
+# Windows / Linux
+python final_project/evaluate_actor_critic.py --episodes 5 --viewer
 ```
 
 The evaluation command loads the saved checkpoint, generates a different blue
 target each episode, prints the deterministic Actor actions and Critic values,
-and reports touch success. It does not retrain the model. For a headless
-presentation fallback, run the same command without `--viewer`.
+and reports touch success. It does not retrain the model. macOS uses `mjpython`
+because the MuJoCo Viewer must run on the main thread; Windows and Linux can
+normally use standard Python. For a cross-platform headless fallback, run:
+
+```bash
+python final_project/evaluate_actor_critic.py --episodes 5
+```
 
 The current saved checkpoint achieved 100 successes in 100 deterministic
 evaluation episodes with a mean minimum fingertip distance of 0.0185 m. These
