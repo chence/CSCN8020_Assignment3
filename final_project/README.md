@@ -96,3 +96,66 @@ mjpython final_project/reach_touch_inspire_demo.py \
 Finger contact is disabled in this baseline because detailed imported hand
 collision meshes can interfere with the scripted pose. The virtual target
 touch is evaluated using fingertip-to-target distance.
+
+## Actor-Critic learned-policy version
+
+The project also includes a PPO Actor-Critic policy that learns to reach
+randomized reachable targets. Unlike the scripted sequence, the target
+position is part of the observation, so moving the blue target changes the
+actions selected by the Actor.
+
+The 19-value state is:
+
+```text
+[q(4), qdot(4), fingertip_xyz(3), target_xyz(3),
+ target_minus_fingertip(3), distance(1), hold_progress(1)]
+```
+
+The Actor produces four continuous joint-position increments for left
+shoulder pitch, shoulder roll, shoulder yaw, and elbow. The Critic estimates
+the state value `V(s)`. The articulated fingers remain in the validated
+pointing pose while the learned policy controls the arm.
+
+Train from the repository root:
+
+```bash
+source .venv/bin/activate
+python final_project/train_actor_critic.py
+```
+
+The trainer evaluates the deterministic policy on a fixed validation set every
+five updates and saves the best checkpoint, rather than assuming that the last
+PPO update is the best one.
+
+Evaluate the saved checkpoint on new randomized targets:
+
+```bash
+python final_project/evaluate_actor_critic.py --episodes 100
+```
+
+Show the learned policy in the MuJoCo viewer:
+
+```bash
+mjpython final_project/evaluate_actor_critic.py --episodes 5 --viewer
+```
+
+The evaluation command loads the saved checkpoint, generates a different blue
+target each episode, prints the deterministic Actor actions and Critic values,
+and reports touch success. It does not retrain the model. For a headless
+presentation fallback, run the same command without `--viewer`.
+
+The current saved checkpoint achieved 100 successes in 100 deterministic
+evaluation episodes with a mean minimum fingertip distance of 0.0185 m. These
+episodes use seeds separate from the validation targets used for checkpoint
+selection.
+
+Implementation files:
+
+- `inspire_reach_env.py`: randomized-target Gymnasium environment.
+- `actor_critic.py`: Actor, Critic, PPO update, GAE, and checkpoint code.
+- `train_actor_critic.py`: training, metrics, validation, and best-model selection.
+- `evaluate_actor_critic.py`: deterministic saved-policy evaluation and viewer.
+- `test_actor_critic.py`: headless environment and PPO update checks.
+
+See `ACTOR_CRITIC.md` for the mathematical task definition and the distinction
+between the earlier DQN and this Actor-Critic implementation.

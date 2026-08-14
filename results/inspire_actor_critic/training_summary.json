@@ -1,0 +1,13 @@
+{
+  "algorithm": "PPO Actor-Critic",
+  "seed": 42,
+  "updates": 100,
+  "steps_per_update": 1024,
+  "environment_steps": 102400,
+  "observation_definition": "q[4], qdot[4], fingertip[3], target[3], delta[3], distance, hold_progress",
+  "action_definition": "bounded joint-position increments for shoulder pitch/roll/yaw and elbow",
+  "training_seconds": 21.087096082992502,
+  "selected_update": 35,
+  "validation_success_rate": 1.0,
+  "validation_mean_minimum_distance": 0.01852715992428009
+}
