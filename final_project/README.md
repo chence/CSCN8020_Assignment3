@@ -14,7 +14,7 @@ From the repository root:
 
 ```bash
 source .venv/bin/activate
-mjpython final_project/reach_touch_inspire_demo.py
+mjpython final_project/reach_touch_inspire_demo.py --keep-viewer-open
 ```
 
 The blue gradient sky, checkerboard floor, lighting, and camera framing are
@@ -79,7 +79,8 @@ Example:
 mjpython final_project/reach_touch_inspire_demo.py \
   --target-radius 0.04 \
   --target-visual-radius 0.015 \
-  --required-hold 1.5
+  --required-hold 1.5 \
+  --keep-viewer-open
 ```
 
 ## What this demo proves
@@ -137,10 +138,10 @@ Show the learned policy in the MuJoCo viewer:
 
 ```bash
 # macOS
-mjpython final_project/evaluate_actor_critic.py --episodes 5 --viewer
+mjpython final_project/evaluate_actor_critic.py --episodes 5 --viewer --keep-viewer-open
 
 # Windows / Linux
-python final_project/evaluate_actor_critic.py --episodes 5 --viewer
+python final_project/evaluate_actor_critic.py --episodes 5 --viewer --keep-viewer-open
 ```
 
 The evaluation command loads the saved checkpoint, generates a different blue

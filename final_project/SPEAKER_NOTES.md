@@ -86,7 +86,7 @@ Two command-line parameters define success. `target-radius` is the maximum finge
 
 ```bash
 source .venv/bin/activate
-mjpython final_project/reach_touch_inspire_demo.py
+mjpython final_project/reach_touch_inspire_demo.py --keep-viewer-open
 ```
 
 ## Slide 6 — The Inspire baseline reaches the target and holds

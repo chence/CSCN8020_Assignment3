@@ -6,7 +6,7 @@ from actor_critic import PPOAgent, PPOConfig, generalized_advantage_estimate
 from inspire_reach_env import InspireReachEnv
 
 
-def main() -> None:
+def test_actor_critic_environment_and_update() -> None:
     env = InspireReachEnv(maximum_episode_steps=3)
     try:
         observation, info = env.reset(seed=7)
@@ -45,6 +45,10 @@ def main() -> None:
         assert all(np.isfinite(list(metrics.values())))
     finally:
         env.close()
+
+
+def main() -> None:
+    test_actor_critic_environment_and_update()
     print("Actor-Critic environment and PPO update tests passed.")
 
 

@@ -124,7 +124,7 @@
 
 ```bash
 source .venv/bin/activate
-mjpython final_project/reach_touch_inspire_demo.py
+mjpython final_project/reach_touch_inspire_demo.py --keep-viewer-open
 ```
 
 ## 22. How do we run reproducible headless verification? / 如何运行可复现的无界面验证？

@@ -536,6 +536,12 @@ def run(args: argparse.Namespace) -> int:
                         float(demo.data.time) - simulation_start
                     )
                     time.sleep(max(0.0, target_wall - time.perf_counter()))
+        if viewer is not None and args.keep_viewer_open:
+            print("\nSequence complete. Close the MuJoCo viewer to exit.")
+            while viewer.is_running():
+                demo.add_target_to_viewer(viewer, touch_steps > 0)
+                viewer.sync()
+                time.sleep(1.0 / 30.0)
     finally:
         if viewer is not None:
             viewer.close()
@@ -563,6 +569,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--model", type=Path, default=DEFAULT_MODEL)
     parser.add_argument("--no-viewer", action="store_true")
+    parser.add_argument(
+        "--keep-viewer-open",
+        action="store_true",
+        help="Keep the MuJoCo viewer open after the scripted sequence finishes.",
+    )
     parser.add_argument("--target-radius", type=float, default=0.045)
     parser.add_argument("--target-visual-radius", type=float, default=0.018)
     parser.add_argument("--required-hold", type=float, default=1.5)

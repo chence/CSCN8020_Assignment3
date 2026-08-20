@@ -1,34 +1,89 @@
-# CSCN8020 Assignment 3 - Unitree G1 DQN
+# CSCN8020 Group 2 - Unitree G1 Inspire Actor-Critic Project
 
-**Student:** Ce Chen<br>
-**Student ID:** 9007166<br>
+**Course:** CSCN8020<br>
+**Group:** Group 2<br>
+**Members:** Haibo Yuan, Ce Chen, Zhuoran Zhang<br>
 **Repository:** https://github.com/chence/CSCN8020_Assignment3<br>
 **Clone URL:** https://github.com/chence/CSCN8020_Assignment3.git<br>
-**Validated environment:** Python 3.12.13 on macOS (Apple Silicon), CPU execution
+**Validated environment:** Python 3.12 on CPU for headless training and evaluation
 
-## Project Summary
+## Final Project Summary
 
-This project implements a student-written PyTorch Deep Q-Network to control the
-Unitree G1 humanoid robot's left elbow in MuJoCo. The agent observes elbow angle,
-velocity, goal angle, and signed error, then selects decrease, hold, or increase
-actions. Separate online and target networks, experience replay, epsilon-greedy
-exploration, Huber loss, and checkpoint loading are implemented directly. Two
-epsilon-decay schedules are compared under controlled conditions. Both trained
-agents achieved 20/20 successful greedy evaluation episodes across four target
-angles. Configuration A was selected and compared fairly with the supplied
-rule-based policy.
+This repository contains Group 2's final reinforcement-learning project for a
+Unitree G1 humanoid with an Inspire five-finger hand. The completed final task
+is a virtual target-touching controller: a PPO Actor-Critic policy observes the
+robot arm state, index fingertip position, randomized target position, distance,
+and hold progress, then outputs continuous four-joint arm actions to move the
+modeled fingertip into a blue virtual target region.
 
-## Rendered Evaluation Video
+The final saved checkpoint is stored at `models/inspire_actor_critic.pt`. It
+achieves 100/100 deterministic saved-policy successes on randomized evaluation
+targets, with mean minimum fingertip distance of 0.0185 m against a 0.045 m
+touch tolerance. The implementation, demo scripts, mathematical explanation,
+tests, and evidence logs are under `final_project/` and
+`results/inspire_actor_critic/`.
 
-[Watch or download the Unitree G1 DQN evaluation video](https://raw.githubusercontent.com/chence/CSCN8020_Assignment3_Video/refs/heads/master/CSCN8020_Assignment3.mp4)
+The earlier Assignment 3 DQN work remains in this repository as the project
+foundation. It controls the G1 left elbow with a discrete Deep Q-Network and
+documents the baseline RL workflow, environment setup, model checkpointing, and
+evaluation process that the final Actor-Critic project extends.
 
-The video loads `models/selected_dqn.pt` without retraining, reviews the
-experiment and benchmark evidence, and demonstrates the greedy DQN policy in
-the MuJoCo Viewer across the required target angles.
+## Start Here: Final Project Evidence
 
-## Start Here: Assignment Evidence
+No retraining is required to inspect the submitted final-project evidence.
 
-No retraining is required to inspect the submitted evidence.
+| Question | Open this file or command | What to look for |
+|---|---|---|
+| Did the final Actor-Critic policy succeed? | `results/inspire_actor_critic/evaluation.csv` | 100 deterministic saved-policy episodes with successful touches. |
+| What checkpoint is used? | `models/inspire_actor_critic.pt` | Best validation checkpoint selected during PPO training. |
+| How is the RL math mapped to code? | `final_project/ACTOR_CRITIC.md` | State, action, reward, policy, value function, trajectory, PPO update, and code mapping. |
+| Where is the environment implementation? | `final_project/inspire_reach_env.py` | Gymnasium environment with randomized reachable targets and touch termination. |
+| Where is the policy implementation? | `final_project/actor_critic.py` | Actor, Critic, GAE, PPO clipped objective, checkpoint save/load. |
+| Can I run a headless proof? | `python final_project/evaluate_actor_critic.py --episodes 100` | Loads the saved checkpoint and evaluates without retraining. |
+| Can I see the robot move? | `python final_project/evaluate_actor_critic.py --episodes 5 --viewer --keep-viewer-open` | Shows the learned policy reaching randomized blue targets. |
+
+## Quick Demo Guide
+
+Run these commands from the repository root after installing
+`requirements.txt`.
+
+### Headless scripted mechanics demo
+
+```bash
+python final_project/reach_touch_inspire_demo.py --no-viewer
+```
+
+This verifies the G1 Inspire model, fingertip site, pointing pose, target
+distance calculation, and touch/hold metric without opening a viewer.
+
+### Headless learned-policy evaluation
+
+```bash
+python final_project/evaluate_actor_critic.py --episodes 100
+```
+
+This loads `models/inspire_actor_critic.pt`, evaluates 100 randomized targets,
+and writes/prints saved-policy metrics without retraining.
+
+### Visual learned-policy demo
+
+```bash
+python final_project/evaluate_actor_critic.py --episodes 5 --viewer --keep-viewer-open
+```
+
+On macOS, use `mjpython` instead of `python` for viewer commands:
+
+```bash
+mjpython final_project/evaluate_actor_critic.py --episodes 5 --viewer --keep-viewer-open
+```
+
+The viewer demo generates a different blue target each episode, prints Actor
+actions and Critic values, and keeps the MuJoCo window open at the end for live
+presentation discussion.
+
+## Assignment 3 DQN Evidence
+
+The original Assignment 3 DQN evidence is kept for continuity.
 
 | Question | Open this file | What to look for |
 |---|---|---|
@@ -177,6 +232,10 @@ After completing the workshop, students should be able to:
 | Two epsilon-decay experiments | Complete |
 | Greedy evaluation | 20/20 success for both configurations |
 | Selected checkpoint | Complete |
+| G1 Inspire five-finger model demo | Complete |
+| PPO Actor-Critic final controller | Complete |
+| Saved-policy randomized evaluation | 100/100 success |
+| Final project demo guide | Complete |
 | Physical G1 deployment | Future work |
 
 ---
@@ -187,6 +246,7 @@ After completing the workshop, students should be able to:
 - Packages pinned in `requirements.txt`
 - CPU execution for training and evaluation
 - A graphical desktop (macOS, Linux, or WSLg) only for the rendered demonstration
+- `pytest` for the included automated checks
 
 ## Setup
 

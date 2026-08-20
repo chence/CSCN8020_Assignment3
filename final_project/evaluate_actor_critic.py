@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import time
 from pathlib import Path
 
 import numpy as np
@@ -23,6 +24,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=1000)
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--viewer", action="store_true")
+    parser.add_argument(
+        "--keep-viewer-open",
+        action="store_true",
+        help="Keep the MuJoCo viewer open after evaluation finishes.",
+    )
     parser.add_argument("--csv", type=Path, default=Path("results/inspire_actor_critic/evaluation.csv"))
     return parser.parse_args()
 
@@ -96,6 +102,11 @@ def main() -> None:
                 f"minimum_distance={minimum_distance:.4f}m | "
                 f"steps={row['steps']} | reward={total_reward:+.3f}"
             )
+        if args.viewer and args.keep_viewer_open and env.viewer is not None:
+            print("\nEvaluation complete. Close the MuJoCo viewer to exit.")
+            while env.viewer.is_running():
+                env.render()
+                time.sleep(1.0 / 30.0)
     finally:
         env.close()
 
