@@ -3,8 +3,8 @@
 **Course:** CSCN8020<br>
 **Group:** Group 2<br>
 **Members:** Haibo Yuan, Ce Chen, Zhuoran Zhang<br>
-**Repository:** https://github.com/chence/CSCN8020_Assignment3<br>
-**Clone URL:** https://github.com/chence/CSCN8020_Assignment3.git<br>
+**Repository:** https://github.com/chence/CSCN8020_Group2_G1_Inspire_ActorCritic<br>
+**Clone URL:** https://github.com/chence/CSCN8020_Group2_G1_Inspire_ActorCritic.git<br>
 **Validated environment:** Python 3.12 on CPU for headless training and evaluation
 
 ## Final Project Summary
@@ -470,8 +470,8 @@ WSL users should use WSLg and follow the Linux command. These commands load
 ##### Step 1 - Clone the submitted repository
 
 ```bash
-git clone https://github.com/chence/CSCN8020_Assignment3.git CSCN8020_Assignment3
-cd CSCN8020_Assignment3
+git clone https://github.com/chence/CSCN8020_Group2_G1_Inspire_ActorCritic.git CSCN8020_Group2_G1_Inspire_ActorCritic
+cd CSCN8020_Group2_G1_Inspire_ActorCritic
 ```
 
 ##### Step 2 - Create the Python environment
