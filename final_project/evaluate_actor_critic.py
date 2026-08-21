@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import threading
 import time
 from pathlib import Path
 
@@ -69,6 +70,8 @@ def main() -> None:
                 f"initial_fingertip_distance={initial_distance:.4f}m "
                 "actor_mode=deterministic"
             )
+            if episode == 1 and args.viewer and args.keep_viewer_open:
+                input("\nViewer is ready. Press Enter to start the evaluation...")
             while True:
                 action, _, value = agent.select_action(observation, deterministic=True)
                 observation, reward, terminated, truncated, info = env.step(action)
@@ -103,8 +106,21 @@ def main() -> None:
                 f"steps={row['steps']} | reward={total_reward:+.3f}"
             )
         if args.viewer and args.keep_viewer_open and env.viewer is not None:
-            print("\nEvaluation complete. Close the MuJoCo viewer to exit.")
-            while env.viewer.is_running():
+            enter_pressed = threading.Event()
+
+            def wait_for_enter() -> None:
+                try:
+                    input(
+                        "\nEvaluation complete. Close the MuJoCo viewer "
+                        "or press Enter to exit."
+                    )
+                except EOFError:
+                    pass
+                finally:
+                    enter_pressed.set()
+
+            threading.Thread(target=wait_for_enter, daemon=True).start()
+            while env.viewer.is_running() and not enter_pressed.is_set():
                 env.render()
                 time.sleep(1.0 / 30.0)
     finally:
